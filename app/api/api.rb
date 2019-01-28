@@ -10,6 +10,14 @@ class API < Grape::API
           Employee.all
         end
 
+        desc "Get a single employee"
+        params do
+            requires :id, type: String
+        end
+        get ':id' do
+            Employee.find(params[:id])
+        end
+
         desc "create a new employee"
         ## This takes care of parameter validation
         params do
