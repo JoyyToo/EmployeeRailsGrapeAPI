@@ -18,6 +18,17 @@ class API < Grape::API
             Employee.find(params[:id])
         end
 
+        desc "update an employee address"
+        params do
+            requires :id, type: String
+            requires :address, type:String
+        end
+        put ':id' do
+            Employee.find(params[:id]).update({
+                address:params[:address]
+            })
+        end
+
         desc "create a new employee"
         ## This takes care of parameter validation
         params do
