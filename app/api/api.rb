@@ -29,6 +29,14 @@ class API < Grape::API
             })
         end
 
+        desc "Delete a single employee"
+        params do
+            requires :id, type: String
+        end
+        delete ':id' do
+            Employee.find(params[:id]).destroy!
+        end
+
         desc "create a new employee"
         ## This takes care of parameter validation
         params do
